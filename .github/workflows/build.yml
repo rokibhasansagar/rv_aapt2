@@ -27,13 +27,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: 'true'
+          submodules: 'recursive'
 
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
           ndk-version: r23c
           add-to-path: false
+
+      - run: git submodule update --remote
       - run: ./build.sh ${{ matrix.target_arch }}
         env:
           NDK_TOOLCHAIN: ${{ steps.setup-ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64
