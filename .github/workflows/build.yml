@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: 'recursive'
+          submodules: 'true'
 
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
